@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 10%;
+            height: 10%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>동아장 오른쪽</h3>
+    </div>
+    <div align="center">
+        <form action="/editdajR/" method="POST">
+            {% csrf_token %}
+            <div align="center" style="padding-bottom: 1%;">
+                <input type="submit" value="저장">
+            </div>
+            <table align="center" border="1" style="width: 90%; height: 30em; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <td>{{findL6}}<input type="text" name="L6" value="{{L6.model}}">{{findL6}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU6}}<input type="text" name="U6" value="{{U6.model}}">{{findU6}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL7}}<input type="text" name="L7" value="{{L7.model}}">{{findL7}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU7}}<input type="text" name="U7" value="{{U7.model}}">{{findU7}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL8}}<input type="text" name="L8" value="{{L8.model}}">{{findL8}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU8}}<input type="text" name="U8" value="{{U8.model}}">{{findU8}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL9}}<input type="text" name="L9" value="{{L9.model}}">{{findL9}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU9}}<input type="text" name="U9" value="{{U9.model}}">{{findU9}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL10}}<input type="text" name="L10" value="{{L10.model}}">{{findL10}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU10}}<input type="text" name="U10" value="{{U10.model}}">{{findU10}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL11}}<input type="text" name="L11" value="{{L11.model}}">{{findL11}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU11}}<input type="text" name="U11" value="{{U11.model}}">{{findU11}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL12}}<input type="text" name="L12" value="{{L12.model}}">{{findL12}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU12}}<input type="text" name="U12" value="{{U12.model}}">{{findU12}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL13}}<input type="text" name="L13" value="{{L13.model}}">{{findL13}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU13}}<input type="text" name="U13" value="{{U13.model}}">{{findU13}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL14}}<input type="text" name="L14" value="{{L14.model}}">{{findL14}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{findU14}}<input type="text" name="U14" value="{{U14.model}}">{{findU14}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{findL15}}<input type="text" name="L15" value="{{L15.model}}">{{findL15}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
