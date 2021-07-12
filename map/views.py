@@ -131,37 +131,37 @@ def dongajangLclick(request, mdname):
     find = ''
 
     if mdname == dajlB6.model:
-        findB6 = '✔'
+        findB6 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findB6': findB6})
     if mdname == dajlK6.model:
-        findK6 = '✔'
+        findK6 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK6': findK6})
     if mdname == dajlK7.model:
-        findK7 = '✔'
+        findK7 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK7': findK7})
     if mdname == dajlK8.model:
-        findK8 = '✔'
+        findK8 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK8': findK8})
     if mdname == dajlK9.model:
-        findK9 = '✔'
+        findK9 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK9': findK9})
     if mdname == dajlK10.model:
-        findK10 = '✔'
+        findK10 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK10': findK10})
     if mdname == dajlK11.model:
-        findK11 = '✔'
+        findK11 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK11': findK11})
     if mdname == dajlK12.model:
-        findK12 = '✔'
+        findK12 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK12': findK12})
     if mdname == dajlK13.model:
-        findK13 = '✔'
+        findK13 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK13': findK13})
     if mdname == dajlK14.model:
-        findK14 = '✔'
+        findK14 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK14': findK14})
     if mdname == dajlK15.model:
-        findK15 = '✔'
+        findK15 = 'background-color: lightpink;'
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'findK15': findK15})
 
     if message:
@@ -212,64 +212,64 @@ def dongajangRclick(request, mdname):
     find = ''
 
     if mdname == dajrL6.model:
-        findL6 = '✔'
+        findL6 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL6': findL6})
     if mdname == dajrL6.model:
-        findL6 = '✔'
+        findL6 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL6': findL6})
     if mdname == dajrL7.model:
-        findL7 = '✔'
+        findL7 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL7': findL7})
     if mdname == dajrL8.model:
-        findL8 = '✔'
+        findL8 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL8': findL8})
     if mdname == dajrL9.model:
-        findL9 = '✔'
+        findL9 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL9': findL9})
     if mdname == dajrL10.model:
-        findL10 = '✔'
+        findL10 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL10': findL10})
     if mdname == dajrL11.model:
-        findL11 = '✔'
+        findL11 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL11': findL11})
     if mdname == dajrL12.model:
-        findL12 = '✔'
+        findL12 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL12': findL12})
     if mdname == dajrL13.model:
-        findL13 = '✔'
+        findL13 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL13': findL13})
     if mdname == dajrL14.model:
-        findL14 = '✔'
+        findL14 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL14': findL14})
     if mdname == dajrL15.model:
-        findL15 = '✔'
+        findL15 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findL15': findL15})
     if mdname == dajrU6.model:
-        findU6 = '✔'
+        findU6 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU6': findU6})
     if mdname == dajrU7.model:
-        findU7 = '✔'
+        findU7 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU7': findU7})
     if mdname == dajrU8.model:
-        findU8 = '✔'
+        findU8 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU8': findU8})
     if mdname == dajrU9.model:
-        findU9 = '✔'
+        findU9 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU9': findU9})
     if mdname == dajrU10.model:
-        findU10 = '✔'
+        findU10 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU10': findU10})
     if mdname == dajrU11.model:
-        findU11 = '✔'
+        findU11 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU11': findU11})
     if mdname == dajrU12.model:
-        findU12 = '✔'
+        findU12 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU12': findU12})
     if mdname == dajrU13.model:
-        findU13 = '✔'
+        findU13 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU13': findU13})
     if mdname == dajrU14.model:
-        findU14 = '✔'
+        findU14 = 'background-color: lightpink;'
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'findU14': findU14})
 
     if message:
@@ -294,6 +294,7 @@ def dongajangRclick(request, mdname):
 
 
 def editdajL(request):
+    mdmdmd = Yongloc.objects.all()
     message = request.GET.get('message')
     jinsung = request.GET.get('jinsung')
 
@@ -354,10 +355,11 @@ def editdajL(request):
         dajlK15.save()
 
         return render(request, 'dongajangL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15})
-    return render(request, 'editdajL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15})
+    return render(request, 'editdajL.html', {'B6': dajlB6, 'K6': dajlK6, 'K7': dajlK7, 'K8': dajlK8, 'K9': dajlK9, 'K10': dajlK10, 'K11': dajlK11, 'K12': dajlK12, 'K13': dajlK13, 'K14': dajlK14, 'K15': dajlK15, 'gg': mdmdmd})
 
 
 def editdajR(request):
+    mdmdmd = Yongloc.objects.all()
     message = request.GET.get('message')
     jinsung = request.GET.get('jinsung')
 
@@ -442,7 +444,7 @@ def editdajR(request):
         dajrU14.model = request.POST['U14']
         dajrU14.save()
         return render(request, 'dongajangR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14})
-    return render(request, 'editdajR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14})
+    return render(request, 'editdajR.html', {'L6': dajrL6, 'L7': dajrL7, 'L8': dajrL8, 'L9': dajrL9, 'L10': dajrL10, 'L11': dajrL11, 'L12': dajrL12, 'L13': dajrL13, 'L14': dajrL14, 'L15': dajrL15, 'U6': dajrU6, 'U7': dajrU7, 'U8': dajrU8, 'U9': dajrU9, 'U10': dajrU10, 'U11': dajrU11, 'U12': dajrU12, 'U13': dajrU13, 'U14': dajrU14, 'gg': mdmdmd})
 
 
 #################################################################################
