@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 5.88%;
+            height: auto;
+        }
+
+        .tags {
+            width: 80%;
+        }
+
+        /* .tg-2lax {
+            width: 4.54%;
+            height: 10%;
+        } */
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function () {
+            var availableTags = [
+                {% for i in gg %}"{{i.model}}", {% endfor %}
+                ];
+        $(".tags").autocomplete({
+            source: availableTags
+        });
+              });
+    </script>
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>이지넷3층</h3>
+    </div>
+    <form action="/editeznet3/" method="POST">
+        {% csrf_token %}
+        <div align="center">
+            <div align="center" style="padding-bottom: 1%;">
+                <input type="submit" value="저장">
+            </div>
+            <h4 align="center">이지넷3층</h4>
+            <table align="center" border="1" style="width: 90%; height: 100rem; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT4" value="{{BT4.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ4" value="{{CJ4.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT5" value="{{BT5.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ5" value="{{CJ5.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT6" value="{{BT6.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ6" value="{{CJ6.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT7" value="{{BT7.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ7" value="{{CJ7.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT8" value="{{BT8.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ8" value="{{CJ8.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT9" value="{{BT9.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ9" value="{{CJ9.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT10" value="{{BT10.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ10" value="{{CJ10.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT11" value="{{BT11.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ11" value="{{CJ11.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT12" value="{{BT12.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ12" value="{{CJ12.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT13" value="{{BT13.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ13" value="{{CJ13.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT14" value="{{BT14.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ14" value="{{CJ14.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT15" value="{{BT15.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ15" value="{{CJ15.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT16" value="{{BT16.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ16" value="{{CJ16.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT17" value="{{BT17.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ17" value="{{CJ17.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT18" value="{{BT18.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT19" value="{{BT19.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;">입구</th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT20" value="{{BT20.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT21" value="{{BT21.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ21" value="{{CJ21.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT22" value="{{BT22.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ22" value="{{CJ22.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT23" value="{{BT23.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ23" value="{{CJ23.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT24" value="{{BT24.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ24" value="{{CJ24.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT25" value="{{BT25.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ25" value="{{CJ25.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT26" value="{{BT26.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ26" value="{{CJ26.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT27" value="{{BT27.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ27" value="{{CJ27.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT28" value="{{BT28.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ28" value="{{CJ28.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT29" value="{{BT29.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ29" value="{{CJ29.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT30" value="{{BT30.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ30" value="{{CJ30.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT31" value="{{BT31.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ31" value="{{CJ31.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT32" value="{{BT32.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ32" value="{{CJ32.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT33" value="{{BT33.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ33" value="{{CJ33.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT34" value="{{BT34.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ34" value="{{CJ34.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT35" value="{{BT35.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ35" value="{{CJ35.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT36" value="{{BT36.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ36" value="{{CJ36.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT37" value="{{BT37.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ37" value="{{CJ37.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT38" value="{{BT38.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ38" value="{{CJ38.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT39" value="{{BT39.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ39" value="{{CJ39.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT40" value="{{BT40.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ40" value="{{CJ40.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT41" value="{{BT41.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ41" value="{{CJ41.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="BT42" value="{{BT42.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CJ42" value="{{CJ42.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="BT43" value="{{BT43.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CK45" value="{{CK45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CL45" value="{{CL45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CM45" value="{{CM45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CN45" value="{{CN45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CO45" value="{{CO45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CP45" value="{{CP45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CQ45" value="{{CQ45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CR45" value="{{CR45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CS45" value="{{CS45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CT45" value="{{CT45.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax">젠더류</td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="BY50" value="{{BY50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="BZ50" value="{{BZ50.model}}"></td>
+                        <td class="tg-0lax">젠더류</td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CI50" value="{{CI50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CJ50" value="{{CJ50.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>

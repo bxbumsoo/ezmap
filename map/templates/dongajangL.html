@@ -89,7 +89,21 @@
         </div>
     </div>
     <div align="center">
-        <h3>동아장 왼쪽</h3>
+        <h3 style="margin-bottom: 1%;">동아장 왼쪽</h3>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <table style="width: 55%;">
+            <tbody>
+                <tr>
+                    <td>
+                        {% if smd %}<li>{{smd.model}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                    <td>
+                        {% if smd %}<li>{{smd.loc1}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div align="center" style="padding-bottom: 1%;">
         <input type="button" onclick="location.href='/editdajL/'" value="수정하기">

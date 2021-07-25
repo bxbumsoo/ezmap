@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 6.66%;
+            height: auto;
+        }
+
+        /* .tg-2lax {
+            width: 5%;
+            height: 10%; */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>이지넷5층</h3>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <table style="width: 55%;">
+            <tbody>
+                <tr>
+                    <td>
+                        {% if smd %}<li>{{smd.model}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                    <td>
+                        {% if smd %}<li>{{smd.loc1}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <input type="button" onclick="location.href='/editeznet5/'" value="수정하기">
+    </div>
+    <h4 align="center">이지넷5층</h4>
+    <div align="center">
+        <table align="center" border="1" style="width: 90%; height: auto; border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;">벽</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findEP8}};">{{EP8.model}}</td>
+                    <td class="tg-0lax" style="{{findER8}};">{{ER8.model}}</td>
+                    <td class="tg-0lax" style="{{findET8}};">{{ET8.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findEP9}};">{{EP9.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET9}};">{{ET9.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findEP10}};">{{EP10.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET10}};">{{ET10.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;">벽</td>
+                    <td class="tg-0lax" style="{{findDP11}};">{{EP11.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findDP12}};">{{EP12.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findDP13}};">{{EP13.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findDP14}};">{{EP14.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findDP15}};">{{EP15.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="{{findDP16}};">{{EP16.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;">입구</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET23}};">{{ET23.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET24}};">{{ET24.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET25}};">{{ET25.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET26}};">{{ET26.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET27}};">{{ET27.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET28}};">{{ET28.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET29}};">{{ET29.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET30}};">{{ET30.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET31}};">{{ET31.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findET32}};">{{ET32.model}}</td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findEU45}};">{{EU45.model}}</td>
+                    <td class="tg-0lax" style="{{findEV45}};">{{EV45.model}}</td>
+                    <td class="tg-0lax" style="{{findEW45}};">{{EW45.model}}</td>
+                    <td class="tg-0lax" style="{{findEX45}};">{{EX45.model}}</td>
+                    <td class="tg-0lax" style="{{findEY45}};">{{EY45.model}}</td>
+                    <td class="tg-0lax" style="{{findEZ45}};">{{EZ45.model}}</td>
+                    <td class="tg-0lax" style="{{findFA45}};">{{FA45.model}}</td>
+                    <td class="tg-0lax" style="{{findFB45}};">{{FB45.model}}</td>
+                    <td class="tg-0lax" style="{{findFC45}};">{{FC45.model}}</td>
+                    <td class="tg-0lax" style="{{findFD45}};">{{FD45.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findEZ46}};">{{EZ46.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findEZ47}};">{{EZ47.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findEZ48}};">{{EZ48.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findEZ49}};">{{EZ49.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

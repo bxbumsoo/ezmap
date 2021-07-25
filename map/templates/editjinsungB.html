@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 6.66%;
+            height: 1.66%;
+        }
+        .tags{
+            width: 80%;
+        }
+        .tg-2lax{
+            width: 4.54%;
+            height: 10%;
+        }
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function () {
+            var availableTags = [
+                {% for i in gg %}"{{i.model}}", {% endfor %}
+                ];
+        $(".tags").autocomplete({
+            source: availableTags
+        });
+              });
+    </script>
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>진성지하</h3>
+    </div>
+    <form action="/editjinsungB/" method="POST">
+        {% csrf_token %}
+    <div align="center">
+            <div align="center" style="padding-bottom: 1%;">
+                <input type="submit" value="저장">
+            </div>
+            <h4 align="center">입구 정면</h4>
+            <table align="center" border="1" style="width: 90%; height: 100rem; border-collapse: collapse;">
+                <tbody align="center">
+                    <tr>
+                        <td class="tg-0lax" colspan="15">광점퍼코드</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D11" value="{{D11.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" rowspan="2">SUNIX</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D12" value="{{D12.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D13" value="{{D13.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D14" value="{{D14.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O14" value="{{O14.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D15" value="{{D15.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O15" value="{{O15.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D16" value="{{D16.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O16" value="{{O16.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D17" value="{{D17.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O17" value="{{O17.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D18" value="{{D18.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O18" value="{{O18.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax" colspan="4" style="background-color: dimgray;">벽</td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O19" value="{{O19.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D20" value="{{D20.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O20" value="{{O20.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D21" value="{{D21.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O21" value="{{O21.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D22" value="{{D22.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O22" value="{{O22.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D23" value="{{D23.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O23" value="{{O23.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D24" value="{{D24.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O24" value="{{O24.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D25" value="{{D25.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O25" value="{{O25.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D26" value="{{D26.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O26" value="{{O26.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D27" value="{{D27.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O27" value="{{O27.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D28" value="{{D28.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O28" value="{{O28.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D29" value="{{D29.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O29" value="{{O29.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D30" value="{{D30.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" colspan="5" style="background-color: dimgray;">벽</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D31" value="{{D31.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" rowspan="6">HAOC</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D32" value="{{D32.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D33" value="{{D33.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D34" value="{{D34.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D35" value="{{D35.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D36" value="{{D36.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax" colspan="4" style="background-color: dimgray;">벽</td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" rowspan="3" style="background-color: dimgray;">입구</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D38" value="{{D38.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D39" value="{{D39.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D40" value="{{D40.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" rowspan="5">HAOC</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D41" value="{{D41.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D42" value="{{D42.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D43" value="{{D43.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D44" value="{{D44.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D45" value="{{D45.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D46" value="{{D46.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O46" value="{{O46.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D47" value="{{D47.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O47" value="{{O47.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D48" value="{{D48.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O48" value="{{O48.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D49" value="{{D49.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O49" value="{{O49.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D50" value="{{D50.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O50" value="{{O50.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D51" value="{{D51.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O51" value="{{O51.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D52" value="{{D52.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O52" value="{{O52.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D53" value="{{D53.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O53" value="{{O53.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D54" value="{{D54.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" colspan="6" style="background-color: dimgray;">벽</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D55" value="{{D55.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="M55" value="{{M55.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="N55" value="{{N55.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O55" value="{{O55.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="P55" value="{{P55.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="Q55" value="{{Q55.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="R55" value="{{R55.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D56" value="{{D56.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D57" value="{{D57.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D58" value="{{D58.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D59" value="{{D59.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D60" value="{{D60.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;">곤돌라</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D61" value="{{D61.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="M72" value="{{M72.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="N72" value="{{N72.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O72" value="{{O72.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="P72" value="{{P72.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="Q72" value="{{Q72.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="P73" value="{{P73.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="Q73" value="{{Q73.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input class="tags" type="text" name="D74" value="{{D74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="E74" value="{{E74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="F74" value="{{F74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="G74" value="{{G74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="H74" value="{{H74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="I74" value="{{I74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="J74" value="{{J74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="K74" value="{{K74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="L74" value="{{L74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="M74" value="{{M74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="N74" value="{{N74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="O74" value="{{O74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="P74" value="{{P74.model}}"></td>
+                        <td class="tg-0lax"><input class="tags" type="text" name="Q74" value="{{Q74.model}}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+    </div>
+    <h4 align="center">곤돌라 뒤</h4>
+    <div>
+        <table align="center" border="1" style="width: 90%; height: 20rem; border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <td class="tg-2lax"><input class="tags" type="text" name="S47" value="{{S47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="T47" value="{{T47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="U47" value="{{U47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="V47" value="{{V47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="W47" value="{{W47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="X47" value="{{X47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="Y47" value="{{Y47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="Z47" value="{{Z47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AA47" value="{{AA47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AB47" value="{{AB47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AC47" value="{{AC47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AD47" value="{{AD47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AE47" value="{{AE47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AF47" value="{{AF47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AG47" value="{{AG47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AH47" value="{{AH47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AI47" value="{{AI47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AJ47" value="{{AJ47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AK47" value="{{AK47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AL47" value="{{AL47.model}}"></th>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AM47" value="{{AM47.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AN47" value="{{AN47.model}}"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"><input class="tags" type="text" name="R62" value="{{R62.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="U62" value="{{U62.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="X62" value="{{X62.model}}"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AN58" value="{{AN58.model}}"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax" colspan="3" rowspan="3" style="background-color: dimgray;"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AN59" value="{{AN59.model}}"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AA74" value="{{AA74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AB74" value="{{AB74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AC74" value="{{AC74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AD74" value="{{AD74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AE74" value="{{AE74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AF74" value="{{AF74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AG74" value="{{AG74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AH74" value="{{AH74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AI74" value="{{AI74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AJ74" value="{{AJ74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AK74" value="{{AK74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AL74" value="{{AL74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AM74" value="{{AM74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AN74" value="{{AN74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AO74" value="{{AO74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AP74" value="{{AP74.model}}"></td>
+                    <td class="tg-2lax"><input class="tags" type="text" name="AQ74" value="{{AQ74.model}}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </form>
+</body>
+
+</html>

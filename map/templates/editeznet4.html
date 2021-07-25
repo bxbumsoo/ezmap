@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 3.57%;
+            height: auto;
+        }
+
+        .tags {
+            width: 80%;
+        }
+
+        /* .tg-2lax {
+            width: 4.54%;
+            height: 10%;
+        } */
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function () {
+            var availableTags = [
+                {% for i in gg %}"{{i.model}}", {% endfor %}
+                ];
+        $(".tags").autocomplete({
+            source: availableTags
+        });
+              });
+    </script>
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>이지넷4층</h3>
+    </div>
+    <form action="/editeznet4/" method="POST">
+        {% csrf_token %}
+        <div align="center">
+            <div align="center" style="padding-bottom: 1%;">
+                <input type="submit" value="저장">
+            </div>
+            <h4 align="center">이지넷4층</h4>
+            <table align="center" border="1" style="width: 90%; height: 100rem; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th class="tg-0lax"><input type="text" class="tags" name="CV4" value="{{CV4.model}}"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"><input type="text" class="tags" name="DO4" value="{{DO4.model}}"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                        <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV5" value="{{CV5.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO5" value="{{DO5.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV6" value="{{CV6.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO6" value="{{DO6.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV7" value="{{CV7.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO7" value="{{DO7.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV8" value="{{CV8.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO8" value="{{DO8.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV9" value="{{CV9.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO9" value="{{DO9.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV10" value="{{CV10.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO10" value="{{DO10.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV11" value="{{CV11.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO11" value="{{DO11.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV12" value="{{CV12.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO12" value="{{DO12.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV13" value="{{CV13.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO13" value="{{DO13.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV14" value="{{CV14.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO14" value="{{DO14.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV15" value="{{CV15.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO15" value="{{DO15.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV16" value="{{CV16.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO16" value="{{DO16.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV17" value="{{CV17.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO17" value="{{DO17.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV18" value="{{CV18.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO18" value="{{DO18.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV19" value="{{CV19.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO19" value="{{DO19.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV20" value="{{CV20.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV21" value="{{CV21.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;">입구</td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV22" value="{{CV22.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV23" value="{{CV23.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO23" value="{{DO23.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV24" value="{{CV24.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO24" value="{{DO24.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV25" value="{{CV25.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO25" value="{{DO25.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV26" value="{{CV26.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO26" value="{{DO26.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV27" value="{{CV27.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO27" value="{{DO27.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV28" value="{{CV28.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO28" value="{{DO28.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV29" value="{{CV29.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO29" value="{{DO29.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV30" value="{{CV30.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO30" value="{{DO30.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV31" value="{{CV31.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO31" value="{{DO31.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV32" value="{{CV32.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO32" value="{{DO32.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV33" value="{{CV33.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO33" value="{{DO33.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CV34" value="{{CV34.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO34" value="{{DO34.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO35" value="{{DO35.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO36" value="{{DO36.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO37" value="{{DO37.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO38" value="{{DO38.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO39" value="{{DO39.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO40" value="{{DO40.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO41" value="{{DO41.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO42" value="{{DO42.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO43" value="{{DO43.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO44" value="{{DO44.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO45" value="{{DO45.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DR45" value="{{DR45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DS45" value="{{DS45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DT45" value="{{DT45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DU45" value="{{DU45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DV45" value="{{DV45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DW45" value="{{DW45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DX45" value="{{DX45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DY45" value="{{DY45.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CW50" value="{{CW50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CX50" value="{{CX50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CY50" value="{{CY50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="CZ50" value="{{CZ50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DA50" value="{{DA50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DB50" value="{{DB50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DC50" value="{{DC50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DD50" value="{{DD50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DE50" value="{{DE50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DF50" value="{{DF50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DG50" value="{{DG50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DH50" value="{{DH50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DI50" value="{{DI50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DJ50" value="{{DJ50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DK50" value="{{DK50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DL50" value="{{DL50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DM50" value="{{DM50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DN50" value="{{DN50.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="DO50" value="{{DO50.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>

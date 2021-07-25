@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 5.88%;
+            height: auto;
+        }
+
+        /* .tg-2lax {
+            width: 5%;
+            height: 10%; */
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>이지넷3층</h3>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <table style="width: 55%;">
+            <tbody>
+                <tr>
+                    <td>
+                        {% if smd %}<li>{{smd.model}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                    <td>
+                        {% if smd %}<li>{{smd.loc1}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <input type="button" onclick="location.href='/editeznet3/'" value="수정하기">
+    </div>
+    <h4 align="center">이지넷3층</h4>
+    <div align="center">
+        <table align="center" border="1" style="width: 90%; height: auto; border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT4}};">{{BT4.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ4}};">{{CJ4.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT5}};">{{BT5.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ5}};">{{CJ5.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT6}};">{{BT6.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ6}};">{{CJ6.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT7}};">{{BT7.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ7}};">{{CJ7.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT8}};">{{BT8.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ8}};">{{CJ8.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT9}};">{{BT9.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ9}};">{{CJ9.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT10}};">{{BT10.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ10}};">{{CJ10.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT11}};">{{BT11.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ11}};">{{CJ11.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT12}};">{{BT12.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ12}};">{{CJ12.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT13}};">{{BT13.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ13}};">{{CJ13.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT14}};">{{BT14.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ14}};">{{CJ14.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT15}};">{{BT15.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ15}};">{{CJ15.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT16}};">{{BT16.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ16}};">{{CJ16.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT17}};">{{BT17.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ17}};">{{CJ17.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT18}};">{{BT18.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT19}};">{{BT19.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;">입구</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT20}};">{{BT20.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT21}};">{{BT21.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ21}};">{{CJ21.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT22}};">{{BT22.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ22}};">{{CJ22.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT23}};">{{BT23.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ23}};">{{CJ23.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT24}};">{{BT24.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ24}};">{{CJ24.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT25}};">{{BT25.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ25}};">{{CJ25.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT26}};">{{BT26.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ26}};">{{CJ26.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT27}};">{{BT27.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ27}};">{{CJ27.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT28}};">{{BT28.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ28}};">{{CJ28.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT29}};">{{BT29.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ29}};">{{CJ29.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT30}};">{{BT30.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ30}};">{{CJ30.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT31}};">{{BT31.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ31}};">{{CJ31.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT32}};">{{BT32.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ32}};">{{CJ32.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT33}};">{{BT33.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ33}};">{{CJ33.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT34}};">{{BT34.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ34}};">{{CJ34.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT35}};">{{BT35.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ35}};">{{CJ35.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT36}};">{{BT36.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ36}};">{{CJ36.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT37}};">{{BT37.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ37}};">{{CJ37.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT38}};">{{BT38.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ38}};">{{CJ38.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT39}};">{{BT39.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ39}};">{{CJ39.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT40}};">{{BT40.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ40}};">{{CJ40.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT41}};">{{BT41.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ41}};">{{CJ41.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <th class="tg-0lax" style="{{findBT42}};">{{BT42.model}}</th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax"></th>
+                    <th class="tg-0lax" style="{{findCJ42}};">{{CJ42.model}}</th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                    <th class="tg-0lax" style="background-color: dimgray;"></th>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findBT43}};">{{BT43.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findCK45}};">{{CK45.model}}</td>
+                    <td class="tg-0lax" style="{{findCL45}};">{{CL45.model}}</td>
+                    <td class="tg-0lax" style="{{findCM45}};">{{CM45.model}}</td>
+                    <td class="tg-0lax" style="{{findCN45}};">{{CN45.model}}</td>
+                    <td class="tg-0lax" style="{{findCO45}};">{{CO45.model}}</td>
+                    <td class="tg-0lax" style="{{findCP45}};">{{CP45.model}}</td>
+                    <td class="tg-0lax" style="{{findCQ45}};">{{CQ45.model}}</td>
+                    <td class="tg-0lax" style="{{findCR45}};">{{CR45.model}}</td>
+                    <td class="tg-0lax" style="{{findCS45}};">{{CS45.model}}</td>
+                    <td class="tg-0lax" style="{{findCT45}};">{{CT45.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findCA50}};">젠더류</td>
+                    <td class="tg-0lax" style="{{findBY50}};">{{BY50.model}}</td>
+                    <td class="tg-0lax" style="{{findBZ50}};">{{BZ50.model}}</td>
+                    <td class="tg-0lax" style="{{findCA50}};">젠더류</td>
+                    <td class="tg-0lax" style="{{findCI50}};">{{CI50.model}}</td>
+                    <td class="tg-0lax" style="{{findCJ50}};">{{CJ50.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

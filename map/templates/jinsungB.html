@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 6.66%;
+            height: 1.66%;
+        }
+        .tg-2lax{
+            width: 4.54%;
+            height: 10%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>진성지하</h3>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <table style="width: 55%;">
+            <tbody>
+                <tr>
+                    <td>
+                        {% if smd %}<li>{{smd.model}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                    <td>
+                        {% if smd %}<li>{{smd.loc1}}</li>{% else %} {{pass}} {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div align="center" style="padding-bottom: 1%;">
+        <input type="button" onclick="location.href='/editjinsungB/'" value="수정하기">
+    </div>
+    <h4 align="center">입구 정면</h4>
+    <div align="center">
+        <table align="center" border="1" style="width: 90%; height: auto; border-collapse: collapse;">
+            <tbody align="center">
+                <tr>
+                    <td class="tg-0lax" colspan="15">광점퍼코드</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD11}}">{{D11.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" rowspan="2">SUNIX</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD12}}">{{D12.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD13}}">{{D13.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD14}}">{{D14.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findD15}}">{{O14.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD16}}">{{D15.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findD15}}">{{O15.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD16}}">{{D16.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO16}}">{{O16.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD17}}">{{D17.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO17}}">{{O17.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD18}}">{{D18.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO18}}">{{O18.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" colspan="4" style="background-color: dimgray;">벽</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO19}}">{{O19.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD20}}">{{D20.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO20}}">{{O20.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD21}}">{{D21.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO21}}">{{O21.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD22}}">{{D22.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO22}}">{{O22.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD23}}">{{D23.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO23}}">{{O23.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD24}}">{{D24.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO24}}">{{O24.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD25}}">{{D25.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO25}}">{{O25.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD26}}">{{D26.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO26}}">{{O26.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD27}}">{{D27.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO27}}">{{O27.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD28}}">{{D28.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO28}}">{{O28.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD29}}">{{D29.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO29}}">{{O29.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD30}}">{{D30.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" colspan="5" style="background-color: dimgray;">벽</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD31}}">{{D31.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" rowspan="6">HAOC</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD32}}">{{D32.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD33}}">{{D33.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD34}}">{{D34.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD35}}">{{D35.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD36}}">{{D36.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" colspan="4" style="background-color: dimgray;">벽</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" rowspan="3" style="background-color: dimgray;">입구</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD38}}">{{D38.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD39}}">{{D39.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD40}}">{{D40.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" rowspan="5">HAOC</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD41}}">{{D41.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD42}}">{{D42.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD43}}">{{D43.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD44}}">{{D44.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD45}}">{{D45.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD46}}">{{D46.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO46}}">{{O46.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD47}}">{{D47.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO47}}">{{O47.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD48}}">{{D48.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO48}}">{{O48.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD49}}">{{D49.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO49}}">{{O49.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD50}}">{{D50.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO50}}">{{O50.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD51}}">{{D51.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO51}}">{{O51.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD52}}">{{D52.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO52}}">{{O52.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD53}}">{{D53.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findO53}}">{{O53.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD54}}">{{D54.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" colspan="6" style="background-color: dimgray;">벽</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD55}}">{{D55.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findM55}}">{{M55.model}}</td>
+                    <td class="tg-0lax" style="{{findN55}}">{{N55.model}}</td>
+                    <td class="tg-0lax" style="{{findO55}}">{{O55.model}}</td>
+                    <td class="tg-0lax" style="{{findP55}}">{{P55.model}}</td>
+                    <td class="tg-0lax" style="{{findQ55}}">{{Q55.model}}</td>
+                    <td class="tg-0lax" style="{{findR55}}">{{R55.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD56}}">{{D56.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD57}}">{{D57.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD58}}">{{D58.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD59}}">{{D59.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD60}}">{{D60.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;">곤돌라</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax" style="{{findD61}}">{{D61.model}}</td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="background-color: dimgray;"></td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findM72}}">{{M72.model}}</td>
+                    <td class="tg-0lax" style="{{findN72}}">{{N72.model}}</td>
+                    <td class="tg-0lax" style="{{findO72}}">{{O72.model}}</td>
+                    <td class="tg-0lax" style="{{findP72}}">{{P72.model}}</td>
+                    <td class="tg-0lax" style="{{findQ72}}">{{Q72.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax"></td>
+                    <td class="tg-0lax" style="{{findP73}}">{{P73.model}}</td>
+                    <td class="tg-0lax" style="{{findQ73}}">{{Q73.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-1lax" style="{{findD74}}" >{{D74.model}}</td>
+                    <td class="tg-1lax" style="{{findE74}}">{{E74.model}}</td>
+                    <td class="tg-1lax" style="{{findF74}}">{{F74.model}}</td>
+                    <td class="tg-1lax" style="{{findG74}}">{{G74.model}}</td>
+                    <td class="tg-1lax" style="{{findH74}}">{{H74.model}}</td>
+                    <td class="tg-1lax" style="{{findI74}}">{{I74.model}}</td>
+                    <td class="tg-1lax" style="{{findJ74}}">{{J74.model}}</td>
+                    <td class="tg-1lax" style="{{findK74}}">{{K74.model}}</td>
+                    <td class="tg-1lax" style="{{findL74}}">{{L74.model}}</td>
+                    <td class="tg-1lax" style="{{findM74}}">{{M74.model}}</td>
+                    <td class="tg-1lax" style="{{findN74}}">{{N74.model}}</td>
+                    <td class="tg-1lax" style="{{findO74}}">{{O74.model}}</td>
+                    <td class="tg-1lax" style="{{findP74}}">{{P74.model}}</td>
+                    <td class="tg-1lax" style="{{findQ74}}">{{Q74.model}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h4 align="center">곤돌라 뒤</h4>
+    <div>
+        <table align="center" border="1" style="width: 90%; height: 50rem; border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <td class="tg-2lax" style="{{findS47}}">{{S47.model}}</th>
+                    <td class="tg-2lax" style="{{findT47}}">{{T47.model}}</th>
+                    <td class="tg-2lax" style="{{findU47}}">{{U47.model}}</th>
+                    <td class="tg-2lax" style="{{findV47}}">{{V47.model}}</th>
+                    <td class="tg-2lax" style="{{findW47}}">{{W47.model}}</th>
+                    <td class="tg-2lax" style="{{findX47}}">{{X47.model}}</th>
+                    <td class="tg-2lax" style="{{findY47}}">{{Y47.model}}</th>
+                    <td class="tg-2lax" style="{{findZ47}}">{{Z47.model}}</th>
+                    <td class="tg-2lax" style="{{findAA47}}">{{AA47.model}}</th>
+                    <td class="tg-2lax" style="{{findAB47}}">{{AB47.model}}</th>
+                    <td class="tg-2lax" style="{{findAC47}}">{{AC47.model}}</th>
+                    <td class="tg-2lax" style="{{findAD47}}">{{AD47.model}}</th>
+                    <td class="tg-2lax" style="{{findAE47}}">{{AE47.model}}</th>
+                    <td class="tg-2lax" style="{{findAF47}}">{{AF47.model}}</th>
+                    <td class="tg-2lax" style="{{findAG47}}">{{AG47.model}}</th>
+                    <td class="tg-2lax" style="{{findAH47}}">{{AH47.model}}</th>
+                    <td class="tg-2lax" style="{{findAI47}}">{{AI47.model}}</th>
+                    <td class="tg-2lax" style="{{findAJ47}}">{{AJ47.model}}</th>
+                    <td class="tg-2lax" style="{{findAK47}}">{{AK47.model}}</th>
+                    <td class="tg-2lax" style="{{findAL47}}">{{AL47.model}}</th>
+                    <td class="tg-2lax" style="{{findAM47}}">{{AM47.model}}</td>
+                    <td class="tg-2lax" style="{{findAN47}}">{{AN47.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax" style="{{findR62}}">{{R62.model}}</td>
+                    <td class="tg-2lax" style="{{findU62}}">{{U62.model}}</td>
+                    <td class="tg-2lax" style="{{findX62}}">{{X62.model}}</td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax" style="{{findAN58}}">{{AN58.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax" colspan="3" rowspan="3" style="background-color: dimgray;">곤돌라</td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax" style="{{findAN59}}">{{AN59.model}}</td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                </tr>
+                <tr>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax"></td>
+                    <td class="tg-2lax" style="{{findAA74}}">{{AA74.model}}</td>
+                    <td class="tg-2lax" style="{{findAB74}}">{{AB74.model}}</td>
+                    <td class="tg-2lax" style="{{findAC74}}">{{AC74.model}}</td>
+                    <td class="tg-2lax" style="{{findAD74}}">{{AD74.model}}</td>
+                    <td class="tg-2lax" style="{{findAE74}}">{{AE74.model}}</td>
+                    <td class="tg-2lax" style="{{findAF74}}">{{AF74.model}}</td>
+                    <td class="tg-2lax" style="{{findAG74}}">{{AG74.model}}</td>
+                    <td class="tg-2lax" style="{{findAH74}}">{{AH74.model}}</td>
+                    <td class="tg-2lax" style="{{findAI74}}">{{AI74.model}}</td>
+                    <td class="tg-2lax" style="{{findAJ74}}">{{AJ74.model}}</td>
+                    <td class="tg-2lax" style="{{findAK74}}">{{AK74.model}}</td>
+                    <td class="tg-2lax" style="{{findAL74}}">{{AL74.model}}</td>
+                    <td class="tg-2lax" style="{{findAM74}}">{{AM74.model}}</td>
+                    <td class="tg-2lax" style="{{findAN74}}">{{AN74.model}}</td>
+                    <td class="tg-2lax" style="{{findAO74}}">{{AO74.model}}</td>
+                    <td class="tg-2lax" style="{{findAP74}}">{{AP74.model}}</td>
+                    <td class="tg-2lax" style="{{findAQ74}}">{{AQ74.model}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

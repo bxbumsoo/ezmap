@@ -23,63 +23,9 @@
             var availableTags = [
                 {%for i in gg %}"{{i.model}}", {% endfor %}
                 ];
-        $("#tags").autocomplete({
+        $(".tags").autocomplete({
             source: availableTags
         });
-        $("#tags2").autocomplete({
-                source: availableTags
-            });
-        $("#tags3").autocomplete({
-                source: availableTags
-            });
-        $("#tags4").autocomplete({
-                source: availableTags
-            });
-        $("#tags5").autocomplete({
-                source: availableTags
-            });
-        $("#tags6").autocomplete({
-                source: availableTags
-            });
-        $("#tags7").autocomplete({
-                source: availableTags
-            });
-        $("#tags8").autocomplete({
-                source: availableTags
-            });
-        $("#tags9").autocomplete({
-                source: availableTags
-            });
-        $("#tags10").autocomplete({
-                source: availableTags
-            });
-        $("#tags11").autocomplete({
-                source: availableTags
-            });
-        $("#tags12").autocomplete({
-                source: availableTags
-            });
-        $("#tags13").autocomplete({
-                source: availableTags
-            });
-        $("#tags14").autocomplete({
-                source: availableTags
-            });
-        $("#tags15").autocomplete({
-                source: availableTags
-            });
-        $("#tags16").autocomplete({
-                source: availableTags
-            });
-        $("#tags17").autocomplete({
-                source: availableTags
-            });
-        $("#tags18").autocomplete({
-                source: availableTags
-            });
-        $("#tags19").autocomplete({
-                source: availableTags
-            });
               });
     </script>
 </head>
@@ -168,7 +114,7 @@
             <table align="center" border="1" style="width: 90%; height: 30em; border-collapse: collapse;">
                 <tbody>
                     <tr>
-                        <td><input id="tags" type="text" name="L6" value="{{L6.model}}">{{findL6}}</td>
+                        <td><input class="tags" type="text" name="L6" value="{{L6.model}}">{{findL6}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -177,10 +123,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags2" type="text" name="U6" value="{{U6.model}}">{{findU6}}</td>
+                        <td><input class="tags" type="text" name="U6" value="{{U6.model}}">{{findU6}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags3" type="text" name="L7" value="{{L7.model}}">{{findL7}}</td>
+                        <td><input class="tags" type="text" name="L7" value="{{L7.model}}">{{findL7}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -189,10 +135,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags4" type="text" name="U7" value="{{U7.model}}">{{findU7}}</td>
+                        <td><input class="tags" type="text" name="U7" value="{{U7.model}}">{{findU7}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags5" type="text" name="L8" value="{{L8.model}}">{{findL8}}</td>
+                        <td><input class="tags" type="text" name="L8" value="{{L8.model}}">{{findL8}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -201,10 +147,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags6" type="text" name="U8" value="{{U8.model}}">{{findU8}}</td>
+                        <td><input class="tags" type="text" name="U8" value="{{U8.model}}">{{findU8}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags7" type="text" name="L9" value="{{L9.model}}">{{findL9}}</td>
+                        <td><input class="tags" type="text" name="L9" value="{{L9.model}}">{{findL9}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -213,10 +159,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags8" type="text" name="U9" value="{{U9.model}}">{{findU9}}</td>
+                        <td><input class="tags" type="text" name="U9" value="{{U9.model}}">{{findU9}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags9" type="text" name="L10" value="{{L10.model}}">{{findL10}}</td>
+                        <td><input class="tags" type="text" name="L10" value="{{L10.model}}">{{findL10}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -225,10 +171,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags10" type="text" name="U10" value="{{U10.model}}">{{findU10}}</td>
+                        <td><input class="tags" type="text" name="U10" value="{{U10.model}}">{{findU10}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags11" type="text" name="L11" value="{{L11.model}}">{{findL11}}</td>
+                        <td><input class="tags" type="text" name="L11" value="{{L11.model}}">{{findL11}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -237,10 +183,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags12" type="text" name="U11" value="{{U11.model}}">{{findU11}}</td>
+                        <td><input class="tags" type="text" name="U11" value="{{U11.model}}">{{findU11}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags13" type="text" name="L12" value="{{L12.model}}">{{findL12}}</td>
+                        <td><input class="tags" type="text" name="L12" value="{{L12.model}}">{{findL12}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -249,10 +195,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags14" type="text" name="U12" value="{{U12.model}}">{{findU12}}</td>
+                        <td><input class="tags" type="text" name="U12" value="{{U12.model}}">{{findU12}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags15" type="text" name="L13" value="{{L13.model}}">{{findL13}}</td>
+                        <td><input class="tags" type="text" name="L13" value="{{L13.model}}">{{findL13}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -261,10 +207,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags16" type="text" name="U13" value="{{U13.model}}">{{findU13}}</td>
+                        <td><input class="tags" type="text" name="U13" value="{{U13.model}}">{{findU13}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags17" type="text" name="L14" value="{{L14.model}}">{{findL14}}</td>
+                        <td><input class="tags" type="text" name="L14" value="{{L14.model}}">{{findL14}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -273,10 +219,10 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td><input id="tags18" type="text" name="U14" value="{{U14.model}}">{{findU14}}</td>
+                        <td><input class="tags" type="text" name="U14" value="{{U14.model}}">{{findU14}}</td>
                     </tr>
                     <tr>
-                        <td><input id="tags19" type="text" name="L15" value="{{L15.model}}">{{findL15}}</td>
+                        <td><input class="tags" type="text" name="L15" value="{{L15.model}}">{{findL15}}</td>
                         <td></td>
                         <td></td>
                         <td></td>

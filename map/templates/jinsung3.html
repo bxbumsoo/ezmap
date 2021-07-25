@@ -134,8 +134,33 @@
         <input type="submit" value="새로고침" onclick="location.href='.'">
     </div>
     <br>
-    <div align="center">
+    <div align="center" style="padding-bottom: 2%;">
         <input type="submit" value="홈으로" onclick="location.href='/'">
+    </div>
+    <div align="center">
+        <form action="." method="GET" id="gowh">
+            창고 :
+            <select name="jinsung" form="gowh">
+                <option value="">선택하세요</option>
+                <optgroup label="진성빌딩">
+                    <option value="jinsung3">진성3층</option>
+                    <option value="jinsungB">진성지하</option>
+                </optgroup>
+                <optgroup label="이지넷빌딩">
+                    <option value="EZB1">이지넷지하</option>
+                    <option value="EZ1">이지넷1층</option>
+                    <option value="EZ2">이지넷2층</option>
+                    <option value="EZ3">이지넷3층</option>
+                    <option value="EZ4">이지넷4층</option>
+                    <option value="EZ5">이지넷5층</option>
+                </optgroup>
+                <optgroup label="동아장창고">
+                    <option value="DAJL">동아장 왼쪽</option>
+                    <option value="DAJR">동아장 오른쪽</option>
+                </optgroup>
+            </select>
+            <input type="submit" value="이동">
+        </form>
     </div>
     <h3 align="center">&#60;진성&#62;</h3>
     <table align="center" border="1" width="90%" height="50%"

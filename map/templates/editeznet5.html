@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>ezmap</title>
+    <style type="text/css">
+        td {
+            text-align: center;
+            width: 6.66%;
+            height: auto;
+        }
+
+        .tags {
+            width: 80%;
+        }
+
+        /* .tg-2lax {
+            width: 4.54%;
+            height: 10%;
+        } */
+    </style>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script>
+        $(function () {
+            var availableTags = [
+                {% for i in gg %}"{{i.model}}", {% endfor %}
+                ];
+        $(".tags").autocomplete({
+            source: availableTags
+        });
+              });
+    </script>
+</head>
+
+<body>
+    <div>
+        <div align="center" style="margin-top: 13%;">
+            <h1>이지넷 제품 찾기</h1>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            <form action="." method="get">
+                {% csrf_token %}
+                물건 검색 :
+                <input type="text" name="message">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+        <div align="center" style="margin-bottom: 2%;">
+            {{search}} {{message}}
+            <div>
+                <strong>{{nm}}</strong>
+            </div>
+        </div>
+        <div align="center" style="margin-bottom: 1%;">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">모델명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">창고명</th>
+                        <th align="center" style="border-bottom: 1px solid black; width: 20%;">위치좌표</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{%endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div align="center" style="margin-bottom: 2%;">
+            <input type="button" onclick="location.href='.'" value="새로고침">
+        </div>
+        <div align="center">
+            <input type="button" onclick="location.href='/'" value="홈으로">
+        </div>
+        <br>
+        <div align="center">
+            <form action="." method="GET" id="gowh">
+                창고 :
+                <select name="jinsung" form="gowh">
+                    <option value="">선택하세요</option>
+                    <optgroup label="진성빌딩">
+                        <option value="jinsung3">진성3층</option>
+                        <option value="jinsungB">진성지하</option>
+                    </optgroup>
+                    <optgroup label="이지넷빌딩">
+                        <option value="EZB1">이지넷지하</option>
+                        <option value="EZ1">이지넷1층</option>
+                        <option value="EZ2">이지넷2층</option>
+                        <option value="EZ3">이지넷3층</option>
+                        <option value="EZ4">이지넷4층</option>
+                        <option value="EZ5">이지넷5층</option>
+                    </optgroup>
+                    <optgroup label="동아장창고">
+                        <option value="DAJL">동아장 왼쪽</option>
+                        <option value="DAJR">동아장 오른쪽</option>
+                    </optgroup>
+                </select>
+                <input type="submit" value="이동">
+            </form>
+        </div>
+    </div>
+    <div align="center">
+        <h3>이지넷5층</h3>
+    </div>
+    <form action="/editeznet5/" method="POST">
+        {% csrf_token %}
+        <div align="center">
+            <div align="center" style="padding-bottom: 1%;">
+                <input type="submit" value="저장">
+            </div>
+            <h4 align="center">이지넷5층</h4>
+            <table align="center" border="1" style="width: 90%; height: 100rem; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                        <th class="tg-0lax"></th>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;">벽</td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP8" value="{{EP8.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ER8" value="{{ER8.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET8" value="{{ET8.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP9" value="{{EP9.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET9" value="{{ET9.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP10" value="{{EP10.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET10" value="{{ET10.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;">벽</td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP11" value="{{EP11.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP12" value="{{EP12.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP13" value="{{EP13.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP14" value="{{EP14.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP15" value="{{EP15.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EP16" value="{{EP16.model}}"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;">입구</td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET23" value="{{ET23.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET24" value="{{ET24.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET25" value="{{ET25.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET26" value="{{ET26.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET27" value="{{ET27.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET28" value="{{ET28.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET29" value="{{ET29.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET30" value="{{ET30.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET31" value="{{ET31.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="ET32" value="{{ET32.model}}"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                        <td class="tg-0lax" style="background-color: dimgray;"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EU45" value="{{EU45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EV45" value="{{EV45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EW45" value="{{EW45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EX45" value="{{EX45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EY45" value="{{EY45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EZ45" value="{{EZ45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="FA45" value="{{FA45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="FB45" value="{{FB45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="FC45" value="{{FC45.model}}"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="FD45" value="{{FD45.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EZ46" value="{{EZ46.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EZ47" value="{{EZ47.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EZ48" value="{{EZ48.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"><input type="text" class="tags" name="EZ49" value="{{EZ49.model}}"></td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                        <td class="tg-0lax"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>
