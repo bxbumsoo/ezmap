@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -5,6 +6,7 @@
 <head>
 
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <title>ezmap</title>
     <style>
@@ -42,7 +44,8 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{% endfor %}</td>
+                        <td align="center">{% for i in md %}<li style="margin-top: 1%;"><a
+                                    href="/{{i.loc0}}/{{ i.model }}">{{i.model}}</a></li>{% endfor %}</td>
                         <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc0}}</li>{% endfor %}</td>
                         <td align="center">{% for i in md %}<li style="margin-top: 1%;">{{i.loc1}}</li>{% endfor %}</td>
                     </tr>
@@ -59,7 +62,7 @@
         <br>
         <div align="center">
             <form action="." method="GET" id="gowh">
-                창고 : 
+                창고 :
                 <select name="jinsung" form="gowh">
                     <option value="">선택하세요</option>
                     <optgroup label="진성빌딩">
@@ -82,6 +85,11 @@
                 <input type="submit" value="이동">
             </form>
         </div>
+    </div>
+    <br>
+    <br>
+    <div align="center">
+        <input style="WIDTH: 10em; HEIGHT: 5em; font-size: 20px;" type="button" onclick="location.href='jinsung3/'" value="진성3층">
     </div>
 </body>
 
